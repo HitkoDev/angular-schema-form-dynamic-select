@@ -36,7 +36,7 @@
     "angular-strap": "^2.3.12",
     "angular-translate": "^2.15.2",
     "bootstrap": "^3.3.7",
-    "ui-select": ""
+    "angular-ui-select": "^0.19.8"
   },
   "repository": {
     "type": "git",
