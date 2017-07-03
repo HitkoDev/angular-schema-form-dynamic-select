@@ -18,18 +18,18 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
         if (search) {
             console.log("Here the select lis could be narrowed using the search value: " + search.toString());
             return [
-                {value: "value1", name: "text1"},
-                {value: "value2", name: "text2"},
-                {value: "value3", name: "Select dynamic!"}
+                { value: "value1", name: "text1" },
+                { value: "value2", name: "text2" },
+                { value: "value3", name: "Select dynamic!" }
             ].filter(function (item) {
-                    return (item.name.search(search) > -1)
-                });
+                return (item.name.search(search) > -1)
+            });
         }
         else {
             return [
-                {value: "value1", name: "text1"},
-                {value: "value2", name: "text2"},
-                {value: "value3", name: "Select dynamic!"}
+                { value: "value1", name: "text1" },
+                { value: "value2", name: "text2" },
+                { value: "value3", name: "Select dynamic!" }
             ];
 
         }
@@ -38,19 +38,19 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
     };
     $scope.callBackUI = function (options) {
         return [
-            {"value": "value1", "name": "text1", "category": "value1"},
-            {"value": "value2", "name": "text2", "category": "value1"},
-            {"value": "value3", "name": "So this is the next item", "category": "value2"},
-            {"value": "value4", "name": "The last item", "category": "value1"}
+            { "value": "value1", "name": "text1", "category": "value1" },
+            { "value": "value2", "name": "text2", "category": "value1" },
+            { "value": "value3", "name": "So this is the next item", "category": "value2" },
+            { "value": "value4", "name": "The last item", "category": "value1" }
         ];
         // Note: Options is a reference to the original instance, if you change a value,
         // that change will persist when you use this form instance again.
     };
     $scope.callBackMSD = function (options) {
         return [
-            {value: "value1", name: "text1"},
-            {value: "value2", name: "text2"},
-            {value: "value3", name: "Multiple select dynamic!"}
+            { value: "value1", name: "text1" },
+            { value: "value2", name: "text2" },
+            { value: "value3", name: "Multiple select dynamic!" }
         ];
         // Note: Options is a reference to the original instance, if you change a value,
         // that change will persist when you use this form instance again.
@@ -91,7 +91,7 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
             multiselect: {
                 title: "Multi select strap-select",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 maxItems: 2,
                 description: "Multiple items are allowed, select three for maxItems validation error. Each item belongs to a \"category\", so the list is filtered depending on what you have selected in the \"Single select strap-select\" above."
             },
@@ -103,7 +103,7 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
             uiselectmultiple: {
                 title: "Multi select for UI-select",
                 type: "array",
-                items: {type: "integer"},
+                items: { type: "integer" },
                 description: "This one is using UI-select, allows multiple selection. From a callback."
             },
             selectDynamic: {
@@ -114,34 +114,34 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
             multiselectDynamic: {
                 title: "Multi Select Dynamic",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "This titleMap is loaded from the $scope.callBackMSD function. (referenced by name)"
             },
             multiselectDynamicHttpPost: {
                 title: "Multi Select Dynamic HTTP Post",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "This titleMap is asynchronously loaded using a HTTP post. " +
                 "(specifies parameter in form, options.url in a named callback)"
             },
             multiselectDynamicHttpGet: {
                 title: "Multi Select Dynamic HTTP Get",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "This titleMap is asynchronously loaded using a HTTP get. " +
                 "(Set the URL at options.url)"
             },
             multiselectDynamicHttpGetMapped: {
                 title: "Multi Select Dynamic HTTP Get Mapped data",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "This titleMap is as above, but remapped from a nodeId/nodeName array of objects. " +
                 "(See app.js: \"map\" : {valueProperty: \"nodeId\", textProperty: \"nodeName\"})"
             },
             multiselectDynamicHttpGetMappedArray: {
                 title: "Multi Select Dynamic HTTP Get Mapped data using array",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "This titleMap is as above, but remapped from a nodeId/nodeName/category array of objects" +
                 " with an optional separator and using the first existing value for the nameProperty (similar to COALESCE in sql server)." +
                 "(See app.js: \"map\" : {valueProperty: \"nodeId\", nameProperty: [\"nodeName\",\"category\"], separatorValue: \" | \"})"
@@ -149,13 +149,13 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
             multiselectDynamicAsync: {
                 title: "Multi Select Dynamic Async",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "This titleMap is asynchrously loaded using options.async.call and implements the onChange event. "
             },
             multiselect_overflow: {
                 title: "Strap select with overflow",
                 type: "array",
-                items: {type: "string"},
+                items: { type: "string" },
                 description: "If you select more than two items here, it will only show the first two and "
             },
             select_placement: {
@@ -202,8 +202,8 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
             },
             "validationMessage": "Hey, you can only select three items or you'll see this!",
             "titleMap": [
-                {"value": "value1", "name": "text1 (belongs to the value1-category)", "category": "value1"},
-                {"value": "value2", "name": "text2 (belongs to the value1-category)", "category": "value1"},
+                { "value": "value1", "name": "text1 (belongs to the value1-category)", "category": "value1" },
+                { "value": "value2", "name": "text2 (belongs to the value1-category)", "category": "value1" },
                 {
                     "value": "value3",
                     "name": "long very very long label3 (belongs to the value2-category)",
@@ -260,7 +260,7 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
                 "multiple": "true",
                 "httpPost": {
                     "optionsCallback": "stringOptionsCallback",
-                    "parameter": {"myparam": "Hello"}
+                    "parameter": { "myparam": "Hello" }
                 }
             }
         },
@@ -284,7 +284,7 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
                 "httpGet": {
                     "url": "test/testdata_mapped.json"
                 },
-                "map": {valueProperty: "nodeId", nameProperty: "nodeName"}
+                "map": { valueProperty: "nodeId", nameProperty: "nodeName" }
             }
         },
         {
@@ -296,7 +296,7 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
                 "httpGet": {
                     "url": "test/testdata_mapped.json"
                 },
-                "map": {valueProperty: "nodeId", nameProperty: ["nodeName","category"], separatorValue: " | "}
+                "map": { valueProperty: "nodeId", nameProperty: ["nodeName", "category"], separatorValue: " | " }
             }
         },
         {
@@ -329,10 +329,10 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
                 "inlineMaxLengthHtml": "Too many items to show...."
             },
             "titleMap": [
-                {"value": "value1", "name": "text1"},
-                {"value": "value2", "name": "text2"},
-                {"value": "value3", "name": "text3"},
-                {"value": "value4", "name": "text4"}
+                { "value": "value1", "name": "text1" },
+                { "value": "value2", "name": "text2" },
+                { "value": "value3", "name": "text3" },
+                { "value": "value4", "name": "text4" }
             ]
         },
         {
@@ -387,5 +387,5 @@ testApp.controller("appController", ["$scope", "$http", function ($scope, $http)
         console.log($scope.model);
     };
 }])
-;
+    ;
 

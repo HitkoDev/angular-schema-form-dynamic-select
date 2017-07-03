@@ -20,9 +20,9 @@ describe('Schema form', function () {
 
             scope.callBackSD = function (options) {
                 return [
-                    {value: 'value1', name: 'text1'},
-                    {value: 'value2', name: 'text2'},
-                    {value: 'value3', name: 'Select dynamic!'}
+                    { value: 'value1', name: 'text1' },
+                    { value: 'value2', name: 'text2' },
+                    { value: 'value3', name: 'Select dynamic!' }
                 ];
                 // Note: Options is a reference to the original instance, if you change a value,
                 // that change will persist when you use this form instance again.
@@ -30,9 +30,9 @@ describe('Schema form', function () {
 
             scope.callBackMSD = function (options) {
                 return [
-                    {value: 'value1', name: 'text1'},
-                    {value: 'value2', name: 'text2'},
-                    {value: 'value3', name: 'Multiple select dynamic!'}
+                    { value: 'value1', name: 'text1' },
+                    { value: 'value2', name: 'text2' },
+                    { value: 'value3', name: 'Multiple select dynamic!' }
                 ];
                 // Note: Options is a reference to the original instance, if you change a value,
                 // that change will persist when you use this form instance again.
@@ -128,37 +128,37 @@ describe('Schema form', function () {
             };
 
             scope.testResponse = [
-                {value: "json-value1", name: "json-name1"},
-                {value: "json-value2", name: "json-name2"},
-                {value: "json-value3", name: "json-name3"}
+                { value: "json-value1", name: "json-name1" },
+                { value: "json-value2", name: "json-name2" },
+                { value: "json-value3", name: "json-name3" }
             ];
             scope.testResponseMapped = [
-                {"nodeId": "1", "nodeName": "Node 1"},
-                {"nodeId": "2", "nodeName": "Node 2"},
-                {"nodeId": "3", "nodeName": "Node 3"}
+                { "nodeId": "1", "nodeName": "Node 1" },
+                { "nodeId": "2", "nodeName": "Node 2" },
+                { "nodeId": "3", "nodeName": "Node 3" }
             ];
             scope.testResponseMappedCmp = [
-                {"nodeId": "1", "nodeName": "Node 1", "value": "1", "name": "Node 1"},
-                {"nodeId": "2", "nodeName": "Node 2", "value": "2", "name": "Node 2"},
-                {"nodeId": "3", "nodeName": "Node 3", "value": "3", "name": "Node 3"}
+                { "nodeId": "1", "nodeName": "Node 1", "value": "1", "name": "Node 1" },
+                { "nodeId": "2", "nodeName": "Node 2", "value": "2", "name": "Node 2" },
+                { "nodeId": "3", "nodeName": "Node 3", "value": "3", "name": "Node 3" }
             ];
             scope.form = [
                 {
                     "key": 'select',
                     "type": 'strapselect',
                     "titleMap": [
-                        {"value": 'value1', "name": 'text1'},
-                        {"value": 'value2', "name": 'text2'},
-                        {"value": 'value3', "name": 'text3'}
+                        { "value": 'value1', "name": 'text1' },
+                        { "value": 'value2', "name": 'text2' },
+                        { "value": 'value3', "name": 'text3' }
                     ]
                 },
                 {
                     "key": 'multiselect',
                     "type": 'strapmultiselect',
                     "titleMap": [
-                        {"value": 'value1', "name": 'text1'},
-                        {"value": 'value2', "name": 'text2'},
-                        {"value": 'value3', "name": 'long very very long label3'}
+                        { "value": 'value1', "name": 'text1' },
+                        { "value": 'value2', "name": 'text2' },
+                        { "value": 'value3', "name": 'long very very long label3' }
                     ]
                 },
                 {
@@ -186,7 +186,7 @@ describe('Schema form', function () {
                     "options": {
                         "httpPost": {
                             "optionsCallback": "stringOptionsCallback",
-                            "parameter": {"myparam": "Hello"}
+                            "parameter": { "myparam": "Hello" }
                         }
                     }
                 },
@@ -206,7 +206,7 @@ describe('Schema form', function () {
                         "httpGet": {
                             "url": "test/testdata_mapped.json"
                         },
-                        "map": {valueProperty: "nodeId", nameProperty: "nodeName"}
+                        "map": { valueProperty: "nodeId", nameProperty: "nodeName" }
                     }
                 },
                 {
@@ -240,7 +240,7 @@ describe('Schema form', function () {
                 // Add http mocks
                 $httpBackend.whenGET("test/testdata.json").respond(200, scope.testResponse);
                 $httpBackend.whenGET("test/testdata_mapped.json").respond(200, scope.testResponseMapped);
-                $httpBackend.whenPOST("test/testdata.json", {"myparam": "Hello"}).respond(200, scope.testResponse);
+                $httpBackend.whenPOST("test/testdata.json", { "myparam": "Hello" }).respond(200, scope.testResponse);
 
                 // Compile the template
                 $compile(tmpl)(scope);
@@ -257,28 +257,28 @@ describe('Schema form', function () {
                 // Wait for all getting done before checking.
                 $timeout(function () {
 
-                        // Find HTML elements in the response, find its scope, and then deep compare with known results.
+                    // Find HTML elements in the response, find its scope, and then deep compare with known results.
 
-                        // Single Select Dynamic
-                        expect(JSON.stringify(angular.element(tmpl.children().eq(2).children().eq(0).children().eq(1)).scope().form.titleMap)).
-                            to.equal(JSON.stringify(scope.callBackSD()), "Single Select Dynamic test failed.");
-                        // Multi Select Dynamic
-                        expect(JSON.stringify(angular.element(tmpl.children().eq(3).children().eq(0).children().eq(1)).scope().form.titleMap)).
-                            to.equal(JSON.stringify(scope.callBackMSD()), "Multi Select Dynamic test failed.");
-                        // Multi Select Dynamic HTTP Post
-                        expect(JSON.stringify(angular.element(tmpl.children().eq(4).children().eq(0).children().eq(1)).scope().form.titleMap)).
-                            to.equal(JSON.stringify(scope.testResponse), "Multi Select Dynamic HTTP Post test failed.");
-                        // Multi Select Dynamic HTTP Get
-                        expect(JSON.stringify(angular.element(tmpl.children().eq(5).children().eq(0).children().eq(1)).scope().form.titleMap)).
-                            to.equal(JSON.stringify(scope.testResponse), "Multi Select Dynamic HTTP Get test failed.");
-                        // Multi Select Dynamic HTTP Get Mapped
-                        expect(JSON.stringify(angular.element(tmpl.children().eq(6).children().eq(0).children().eq(1)).scope().form.titleMap)).
-                            to.equal(JSON.stringify(scope.testResponseMappedCmp), "Multi Select Dynamic HTTP Get Mapped test failed.");
-                        // Multi Select Dynamic Async
-                        expect(JSON.stringify(angular.element(tmpl.children().eq(7).children().eq(0).children().eq(1)).scope().form.titleMap)).
-                            to.equal(JSON.stringify(scope.testResponse), "Multi Select Dynamic Async test failed.");
+                    // Single Select Dynamic
+                    expect(JSON.stringify(angular.element(tmpl.children().eq(2).children().eq(0).children().eq(1)).scope().form.titleMap)).
+                        to.equal(JSON.stringify(scope.callBackSD()), "Single Select Dynamic test failed.");
+                    // Multi Select Dynamic
+                    expect(JSON.stringify(angular.element(tmpl.children().eq(3).children().eq(0).children().eq(1)).scope().form.titleMap)).
+                        to.equal(JSON.stringify(scope.callBackMSD()), "Multi Select Dynamic test failed.");
+                    // Multi Select Dynamic HTTP Post
+                    expect(JSON.stringify(angular.element(tmpl.children().eq(4).children().eq(0).children().eq(1)).scope().form.titleMap)).
+                        to.equal(JSON.stringify(scope.testResponse), "Multi Select Dynamic HTTP Post test failed.");
+                    // Multi Select Dynamic HTTP Get
+                    expect(JSON.stringify(angular.element(tmpl.children().eq(5).children().eq(0).children().eq(1)).scope().form.titleMap)).
+                        to.equal(JSON.stringify(scope.testResponse), "Multi Select Dynamic HTTP Get test failed.");
+                    // Multi Select Dynamic HTTP Get Mapped
+                    expect(JSON.stringify(angular.element(tmpl.children().eq(6).children().eq(0).children().eq(1)).scope().form.titleMap)).
+                        to.equal(JSON.stringify(scope.testResponseMappedCmp), "Multi Select Dynamic HTTP Get Mapped test failed.");
+                    // Multi Select Dynamic Async
+                    expect(JSON.stringify(angular.element(tmpl.children().eq(7).children().eq(0).children().eq(1)).scope().form.titleMap)).
+                        to.equal(JSON.stringify(scope.testResponse), "Multi Select Dynamic Async test failed.");
 
-                    }
+                }
                 );
 
                 // Angular doesn't like async unit tests, tell it to call the checks above
