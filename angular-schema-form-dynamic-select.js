@@ -114,6 +114,8 @@ angular.module('schemaForm').config(
     })
     .filter('propsFilter', function () {
         return function (items, props) {
+            return items;
+
             var out = [];
 
             if (angular.isArray(items)) {
