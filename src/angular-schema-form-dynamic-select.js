@@ -274,27 +274,25 @@ angular.module('schemaForm').controller('dynamicSelectController', ['$scope', '$
     };
 
 
-    $scope.populateTitleMap = function (form, search) {
+    $scope.populateTitleMap = function (form, search, model) {
 
         if (form.schema && "enum" in form.schema) {
             form.titleMap = [];
             form.schema.enum.forEach(function (item) {
                 form.titleMap.push({ "value": item, "name": item })
-            }
-            );
-
+            });
         }
         else if (!form.options) {
 
             console.log("dynamicSelectController.populateTitleMap(key:" + form.key + ") : No options set, needed for dynamic selects");
         }
         else if (form.options.callback) {
-            form.titleMap = $scope.getCallback(form.options.callback)(form.options, search);
+            form.titleMap = $scope.getCallback(form.options.callback)(form.options, search, model);
             $scope.finalizeTitleMap(form, form.titleMap, form.options);
             console.log("callback items: ", form.titleMap);
         }
         else if (form.options.asyncCallback) {
-            return $scope.getCallback(form.options.asyncCallback)(form.options, search).then(
+            return $scope.getCallback(form.options.asyncCallback)(form.options, search, model, form).then(
                 function (_data) {
                     // In order to work with both $http and generic promises
                     _data = _data.data || _data;
