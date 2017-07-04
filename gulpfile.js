@@ -64,7 +64,7 @@ gulp.task('minify', function () {
                     },
                 ];
             },
-            exports: function () { return 'angularSchemaFormDynamicSelect'; },
+            exports: function () { return 'this.angularSchemaFormDynamicSelect'; },
             namespace: function () { return 'angularSchemaFormDynamicSelect'; }
         }))
         .pipe(uglify())
@@ -102,7 +102,7 @@ gulp.task('non-minified-dist', function () {
                     },
                 ];
             },
-            exports: function () { return 'angularSchemaFormDynamicSelect'; },
+            exports: function () { return 'this.angularSchemaFormDynamicSelect'; },
             namespace: function () { return 'angularSchemaFormDynamicSelect'; }
         }))
         .pipe(gulp.dest('.'));
